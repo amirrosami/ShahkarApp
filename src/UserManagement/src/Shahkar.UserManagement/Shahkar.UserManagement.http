@@ -1,0 +1,6 @@
+@Shahkar.UserManagement_HostAddress = http://localhost:5143
+
+GET {{Shahkar.UserManagement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

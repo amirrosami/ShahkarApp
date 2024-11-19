@@ -1,0 +1,66 @@
+version: '1.0'
+services:
+  shahkar_proxy:
+    build: 
+      context: /src/Proxy/Shahkar.Proxy
+      dockerfile: Dockerfile
+
+    networks:
+      - shahkar_network
+  
+  user_management:
+    build: 
+      context: /src/UserManagement/src/Shahkar.UserManagement
+      dockerfile: Dockerfile
+    networks:
+      - shahkar_network
+  shahkar_consumer:
+    build: 
+      context: /Shahkar.Consumer
+      dockerfile: Dockerfile
+    networks:
+      - shahkar_network
+  shahkar_db:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: mssql
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD="amir123"
+    ports:
+      - 1433:1433
+    volumes:
+      - sql_volume:/var/opt/mssql
+    networks:
+      - shahkar_network
+
+  shahkar_redis:
+    image: redis:latest
+    healthcheck:
+    test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+    interval: 1s
+    timeout: 3s
+    retries: 5
+    command: ["redis-server"]
+    networks:
+      - shahkar_network
+
+  shahkar_rabbit:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=local
+    volumes:
+      - 'rabbitmq_data:/data'
+      
+    networks:
+      - shahkar_network
+
+  volumes:
+    rabbitmq_data:  
+    sql_volume:
+
+  networks:
+    shahkar_network:
