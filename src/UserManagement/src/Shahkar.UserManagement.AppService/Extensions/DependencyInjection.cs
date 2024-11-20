@@ -20,8 +20,6 @@ namespace Shahkar.UserManagement.AppService.Extensions
             services.AddDbServices(configuration);
             services.AddScoped<IQueryDispatcher, QueryDispathcher>();
             services.AddScoped<IQueryHandler<GetUserInfoByPhoneQuery, UserInfoView>, GetUserInfoQueryHandler>();
-
-
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = "localhost";
@@ -29,6 +27,7 @@ namespace Shahkar.UserManagement.AppService.Extensions
                 {
                     AbortOnConnectFail = true,
                     EndPoints = { options.Configuration }
+                    
                 };
             });
             return services;
