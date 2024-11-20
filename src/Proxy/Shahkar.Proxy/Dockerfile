@@ -9,7 +9,7 @@ EXPOSE 5001
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Shahkar.Proxy.csproj", "./]
+COPY ["Shahkar.Proxy.csproj", "./"]
 RUN dotnet restore "./Shahkar.Proxy.csproj"
 COPY . .
 RUN dotnet build "Shahkar.Proxy.csproj" -c $BUILD_CONFIGURATION -o /app/build
