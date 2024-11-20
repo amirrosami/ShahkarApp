@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManagement", "UserManagement", "{04FAF1B1-17D0-4358-919E-66D6739699BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB0F6E4E-864E-4955-865B-EB621647C987}"
+	ProjectSection(SolutionItems) = preProject
+		src\UserManagement\src\Shahkar.UserManagement\Dockerfile = src\UserManagement\src\Shahkar.UserManagement\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shahkar.UserManagement", "src\UserManagement\src\Shahkar.UserManagement\Shahkar.UserManagement.csproj", "{96B49D38-4D68-4BC6-BD0F-4862F59A00E3}"
 EndProject

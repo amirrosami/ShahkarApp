@@ -1,16 +1,14 @@
-version: '1.0'
+version: '3.3'
 services:
   shahkar_proxy:
     build: 
       context: /src/Proxy/Shahkar.Proxy
       dockerfile: Dockerfile
-
     networks:
       - shahkar_network
-  
   user_management:
     build: 
-      context: /src/UserManagement/src/Shahkar.UserManagement
+      context: /src/UserManagement/src
       dockerfile: Dockerfile
     networks:
       - shahkar_network
@@ -33,18 +31,11 @@ services:
       - sql_volume:/var/opt/mssql
     networks:
       - shahkar_network
-
   shahkar_redis:
     image: redis:latest
-    healthcheck:
-    test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
-    interval: 1s
-    timeout: 3s
-    retries: 5
     command: ["redis-server"]
     networks:
       - shahkar_network
-
   shahkar_rabbit:
     image: rabbitmq:3-management
     ports:
@@ -54,13 +45,11 @@ services:
       - RABBITMQ_DEFAULT_VHOST=local
     volumes:
       - 'rabbitmq_data:/data'
-      
     networks:
       - shahkar_network
+volumes:
+  rabbitmq_data:  
+  sql_volume:
 
-  volumes:
-    rabbitmq_data:  
-    sql_volume:
-
-  networks:
-    shahkar_network:
+networks:
+  shahkar_network:
