@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserManagement", "UserManag
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BB0F6E4E-864E-4955-865B-EB621647C987}"
 	ProjectSection(SolutionItems) = preProject
-		src\UserManagement\src\Shahkar.UserManagement\Dockerfile = src\UserManagement\src\Shahkar.UserManagement\Dockerfile
+		src\UserManagement\src\Dockerfile = src\UserManagement\src\Dockerfile
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shahkar.UserManagement", "src\UserManagement\src\Shahkar.UserManagement\Shahkar.UserManagement.csproj", "{96B49D38-4D68-4BC6-BD0F-4862F59A00E3}"
@@ -25,6 +25,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FakeDataGenerator", "src\FakeDataGenerator\FakeDataGenerator.csproj", "{AC035D3C-5E68-45A5-9B68-7F21982B93C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shahkar.Consumer", "src\Shahkar.Consumer\Shahkar.Consumer.csproj", "{99348A53-4E28-465D-BF0A-88694F4BF571}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56725240-F147-48AB-BC50-3ABAF7514BC9}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

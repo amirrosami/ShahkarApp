@@ -15,19 +15,19 @@ namespace Shahkar.UserManagement.AppService.UserInfo.QueryHandlers
     public class GetUserInfoQueryHandler : QueryHandler<GetUserInfoByPhoneQuery, UserInfoView>
     {
         private readonly IUserRepository _userRepo;
-        //private readonly IDistributedCache _cache;
+        private readonly IDistributedCache _cache;
         public GetUserInfoQueryHandler(IUserRepository userRepo,IDistributedCache cache)
         {
             _userRepo = userRepo;
-           // _cache = cache;
+           _cache = cache;
         }
         public override async Task<UserInfoView> HandleAsync(GetUserInfoByPhoneQuery query)
         {
             UserInfoView response = null;
-         //   if (_cache.TryGetValue<UserInfoView>(query.PhoneNumber ,out response))
-           /// {
-          //      return response;
-          //  }
+            if (_cache.TryGetValue<UserInfoView>(query.PhoneNumber ,out response))
+            {
+              return response;
+            }
 
             var user =await _userRepo.GetUserAsync(query.PhoneNumber);
             response = new UserInfoView();
@@ -44,7 +44,7 @@ namespace Shahkar.UserManagement.AppService.UserInfo.QueryHandlers
                 response.First_Name = user.First_Name;
                 response.Last_Name  = user.Last_Name;
                 response.Address = user.Address;
-               // await _cache.SetAsync<UserInfoView>(query.PhoneNumber,response);     
+                await _cache.SetAsync<UserInfoView>(query.PhoneNumber,response);     
             }
 
             return response;

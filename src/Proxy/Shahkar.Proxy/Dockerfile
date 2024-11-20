@@ -3,14 +3,14 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5000
+EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Shahkar.Proxy.csproj", "./]
-RUN dotnet restore "Shahkar.Proxy.csproj"
+RUN dotnet restore "./Shahkar.Proxy.csproj"
 COPY . .
 RUN dotnet build "Shahkar.Proxy.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

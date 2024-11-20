@@ -2,19 +2,25 @@ version: '3.3'
 services:
   shahkar_proxy:
     build: 
-      context: /src/Proxy/Shahkar.Proxy
+      context: src/Proxy/Shahkar.Proxy
       dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
     networks:
       - shahkar_network
   user_management:
     build: 
-      context: /src/UserManagement/src
+      context: src/UserManagement/src
       dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+      - "5003:5003"
     networks:
       - shahkar_network
   shahkar_consumer:
     build: 
-      context: /Shahkar.Consumer
+      context: src/Shahkar.Consumer
       dockerfile: Dockerfile
     networks:
       - shahkar_network

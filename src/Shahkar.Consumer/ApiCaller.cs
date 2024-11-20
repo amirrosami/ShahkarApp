@@ -14,13 +14,11 @@ namespace Shahkar.Consumer
        public static async Task<string> GetUserAsync(string phoneNumber)
        {
          
-         var response =await _client.GetAsync($"api/UserInfo/GetUserInfo?PhoneNumber={phoneNumber}");
-         Console.WriteLine( response.RequestMessage);
+         var response = await _client.GetAsync($"api/UserInfo/GetUserInfo?PhoneNumber={phoneNumber}");
+         Console.WriteLine(response.RequestMessage);
          if(response.IsSuccessStatusCode)
          {
-
                return await response.Content.ReadAsStringAsync();
-                
          }
 
          return "";
